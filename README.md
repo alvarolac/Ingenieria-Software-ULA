@@ -1,6 +1,3 @@
-# Ingenieria-Software-ULA
-Repositorio de ejemplos aplicados en el laboratorio de IS - Universidad de Los Andes
-
 ![Alt text](https://github.com/alvarolac/Sistemas-Operativos-ULA/blob/master/resources/logo_computacion.png)
 
 # Ingeniería del Software
