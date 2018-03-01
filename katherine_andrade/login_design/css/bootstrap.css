@@ -1,0 +1,9 @@
+.sap_tabs,.w3ls-tabs {
+    clear: both;
+    padding: 3em;
+    background-color: rgba(198, 189, 255, 0.55);
+
+    -webkit-box-shadow: 20px 10px 5px 0px rgba(198, 189, 255, 0.55);
+    -moz-box-shadow: 20px 10px 5px 0px rgba(198, 189, 255, 0.55);
+    box-shadow: 20px 10px 5px 0px rgba(0,0,0,0.75);
+}
