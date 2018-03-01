@@ -16,7 +16,7 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-image: url("images/fondo.png");
+  background: linear-gradient(to right,#00c6ff , #0072ff);
 }
 
 .form-signin {
