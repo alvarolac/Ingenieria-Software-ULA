@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  
 }
 
 body {
@@ -15,7 +16,7 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background: linear-gradient(to right, #00c6ff , #0072ff);
+  background: linear-gradient(to right,#00c6ff , #0072ff);
 }
 
 .form-signin {
@@ -25,7 +26,7 @@ body {
   margin: 0 auto;
 }
 .form-signin .checkbox {
-  font-weight: 400;
+  font-weight: 200;
 }
 .form-signin .form-control {
   position: relative;
