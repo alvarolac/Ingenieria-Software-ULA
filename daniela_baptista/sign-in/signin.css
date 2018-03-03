@@ -1,0 +1,111 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family:  'Cuprum', sans-serif;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: right;
+  -ms-flex-pack: right;
+  -webkit-box-align: right;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+ background-color: #0F0668;
+ background-image: url("../image.jpg");
+ background-size: cover;
+ position: absolute;
+ top: 0; bottom: 0; left: 0; right: -700px;
+
+}
+
+.text-center {
+  align-content: right;
+}
+
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  /*background-color: #1a237e;*/
+  background-color: rgba(255,255,255,0.4);
+
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+  text-align: left;
+  padding: 12px 2px;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: 5px;
+  border-radius: 10px;
+
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.form-signin button {
+  border-radius: 5px;
+  padding: 10px 10px ;
+  background-image: linear-gradient(45deg, blue, navy); 
+  color: white;
+  border: none;
+  width: 100%;
+
+}
+.form-signin button:hover {
+  background-image: linear-gradient(45deg, aqua, navy);  
+}
+.fa {
+  padding: 8px;
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+
+}
+.fa:hover{
+  opacity: 0.9;
+}
+.fa-facebook
+{
+  background: #3B5998;
+  color: white;
+
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google 
+{
+  background: #dd4b39;
+  color: white;
+}
+.mysocial-login-buttons
+{
+  align-items: center;
+}
