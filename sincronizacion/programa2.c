@@ -1,3 +1,4 @@
+
 /* Universidad de Los Andes
  * Sincronizacion de procesos
  * Asignatura: Sistemas Operativos
@@ -22,37 +23,35 @@ int llamadaSemaforo(int semId, int semNum, int op)
   sops.sem_num = semNum;
   sops.sem_op = op;
   sops.sem_flg = 0;
-  return (semop(semId, &sops, 1)); /*retorna -1 en caso de error */
+  return (semop(semId, &sops, 1)); /** retorna -1 en caso de error **/
 }
-
 
 int main()
 {
+
+  int sem;
+
   system("clear");
   printf("\n\t--> Proceso %d \n\n",getpid());
   srand(getpid());
-
   key_t id_shmem = ftok(ROUTE, ID);
   void *pto_shmem;
   shmem_data *pto_inf;
   int i = 0, shmem, pos, repeticion;
 
-
-  int sem;
   if ((sem  = semget(SEM_ID, 1, 0644)) < 0) {
     perror("\tsemget");
     exit(EXIT_FAILURE);
   }
 
-
-  //Busqueda del segmento de memoria compartida
+  /* Busqueda del segmento de memoria compartida */
   if((shmem = shmget(id_shmem, sizeof(shmem_data), 0666)) < 0)
   {
 		perror("\tshmget");
 		exit(EXIT_FAILURE);
 	}
 
-  //Vinculacion al segmento
+  /* Vinculación al segmento */
 	if((pto_shmem = shmat(shmem, NULL, 0)) == (char *) -1)
 	{
 		perror("\tshmat");
@@ -60,7 +59,7 @@ int main()
 	}
 
 	pto_inf = (shmem_data *) pto_shmem;
-  	pos = shmem_init(pto_inf);
+  pos = shmem_init(pto_inf);
 
   if(pos == -1)
   {
@@ -80,7 +79,7 @@ int main()
   for(i=0; i<repeticion; i++)
   {
     pto_inf->array_p[pos].numero++;
-    printf("\tNumero: %d\n",i);
+    printf("\tNúmero: %d\n",i);
     usleep(500000);
   }
 
@@ -92,7 +91,6 @@ int main()
 	}
 
   llamadaSemaforo(sem, 0, 1);
-
   return(0);
 }
 
