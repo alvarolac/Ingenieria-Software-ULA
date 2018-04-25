@@ -35,7 +35,7 @@ int main() {
   // Creacion del semaforo controlador de procesos
   // solo se aceptaran 4 procesos a la vez en el monitor
   if ((sem  = semget(SEM_ID, 1, IPC_CREAT | 0644)) < 0) {
-    perror("\tError al abrir el semaforo\n");
+    perror("\tsemget");
     return(-1);
   }
 
@@ -113,7 +113,7 @@ void exit_signal(int num_signal)
 
   int sem;
   if ((sem  = semget(SEM_ID, 1, 0644)) < 0) {
-    perror("\tError al abrir el semaforo\n");
+    perror("\tsemget");
     exit(EXIT_FAILURE);
   }
 
@@ -132,7 +132,7 @@ void exit_signal(int num_signal)
 
 	if (shmctl(shmem, IPC_RMID, 0) < 0)
 	{
-		perror("\tshmctl(IPC_RMID)");
+		perror("\tshmctl");
 		exit(EXIT_FAILURE);
 	}
 

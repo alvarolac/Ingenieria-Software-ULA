@@ -40,7 +40,7 @@ int main()
 
   int sem;
   if ((sem  = semget(SEM_ID, 1, 0644)) < 0) {
-    perror("\tError al abrir el semaforo\n");
+    perror("\tsemget");
     exit(EXIT_FAILURE);
   }
 
