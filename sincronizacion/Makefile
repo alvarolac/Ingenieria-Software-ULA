@@ -11,6 +11,7 @@ LIB =
 LIBH = -pthread
 EXECUTABLES = programa1.out programa2.out
 
+
 .c.o:
 	$(CC) $(OPC) $(INC) $<
 

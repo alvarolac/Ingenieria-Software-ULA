@@ -67,7 +67,7 @@ int main() {
   while(1)
   {
     show_mon(pto_inf);
-    usleep(100000);
+    usleep(200000);
   }
 
   return(0);
