@@ -32,32 +32,35 @@ int main() {
 
   int sem;
 
-  // Creacion del semaforo controlador de procesos
-  // solo se aceptaran 4 procesos a la vez en el monitor
+  /*
+     Creacion del semaforo controlador de procesos
+     Nota: solo se aceptaran 4 procesos a la vez en el monitor
+  */
+
   if ((sem  = semget(SEM_ID, 1, IPC_CREAT | 0644)) < 0) {
     perror("Error al abrir el semaforo\n");
     return(-1);
   }
 
-  //Inicializacion del semaforo
+  /* Inicializacion del semaforo */
   semctl(sem, 0, SETVAL, 5);
 
 
-  //Creacion del segmento de memoria compartida
+  /* Creacion del segmento de memoria compartida */
   if((shmem = shmget(id_shmem, sizeof(shmem_data), IPC_CREAT | 0666)) < 0)
   {
 		perror("shmget");
 		exit(EXIT_FAILURE);
   }
 
-  //Vinculacion al segmento
+  /* Vinculacion al segmento */
 	if ((pto_shmem = shmat(shmem, NULL, 0)) == (char *) -1)
 	{
 		perror("shmat");
 		exit(EXIT_FAILURE);
 	}
 
-  //Inicializacion
+  /* Inicializacion */
   pto_inf = (shmem_data *) pto_shmem;
   shmem_init(pto_inf);
 
