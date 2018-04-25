@@ -29,7 +29,7 @@ int llamadaSemaforo(int semId, int semNum, int op)
 int main()
 {
   system("clear");
-  printf("\n--> Proceso %d \n\n",getpid());
+  printf("\n\t--> Proceso %d \n\n",getpid());
   srand(getpid());
 
   key_t id_shmem = ftok(ROUTE, ID);
@@ -40,7 +40,7 @@ int main()
 
   int sem;
   if ((sem  = semget(SEM_ID, 1, 0644)) < 0) {
-    perror("Error al abrir el semaforo\n");
+    perror("\tError al abrir el semaforo\n");
     exit(EXIT_FAILURE);
   }
 
@@ -48,14 +48,14 @@ int main()
   //Busqueda del segmento de memoria compartida
   if((shmem = shmget(id_shmem, sizeof(shmem_data), 0666)) < 0)
   {
-		perror("shmget");
+		perror("\tshmget");
 		exit(EXIT_FAILURE);
 	}
 
   //Vinculacion al segmento
 	if((pto_shmem = shmat(shmem, NULL, 0)) == (char *) -1)
 	{
-		perror("shmat");
+		perror("\tshmat");
 		exit(EXIT_FAILURE);
 	}
 
@@ -66,11 +66,11 @@ int main()
   {
     if(shmdt(pto_shmem) == -1)
 	  {
-		  perror("shmdt");
+		  perror("\tshmdt");
 		  exit(EXIT_FAILURE);
 	  }
 
-    printf("\tMonitor sin espacio!!!\n\n");
+    printf("\t\tMonitor sin espacio!!!\n\n");
     exit(EXIT_SUCCESS);
   }
 
@@ -80,14 +80,14 @@ int main()
   for(i=0; i<repeticion; i++)
   {
     pto_inf->array_p[pos].numero++;
-    printf("Numero: %d\n",i);
+    printf("\tNumero: %d\n",i);
     usleep(500000);
   }
 
   pto_inf->array_p[pos].termino = 1;
   if(shmdt(pto_shmem) == -1)
 	{
-	  perror("shmdt");
+	  perror("\tshmdt");
 	  exit(EXIT_FAILURE);
 	}
 

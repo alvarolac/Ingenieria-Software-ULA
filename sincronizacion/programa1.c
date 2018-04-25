@@ -4,7 +4,7 @@
  * Autor: Alvaro Araujo
  * Fecha: 20/04/2018
  */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -21,7 +21,7 @@ void exit_signal(int);
 
 int main() {
   system("clear");
-  printf("\n_______________________  Monitor De Procesos _______________________\n\n");
+  printf("\n\t_______________________  Monitor De Procesos _______________________\n\n");
 
   key_t id_shmem = ftok(ROUTE, ID);
   void * pto_shmem;
@@ -35,7 +35,7 @@ int main() {
   // Creacion del semaforo controlador de procesos
   // solo se aceptaran 4 procesos a la vez en el monitor
   if ((sem  = semget(SEM_ID, 1, IPC_CREAT | 0644)) < 0) {
-    perror("Error al abrir el semaforo\n");
+    perror("\tError al abrir el semaforo\n");
     return(-1);
   }
 
@@ -46,14 +46,14 @@ int main() {
   //Creacion del segmento de memoria compartida
   if((shmem = shmget(id_shmem, sizeof(shmem_data), IPC_CREAT | 0666)) < 0)
   {
-		perror("shmget");
+		perror("\tshmget");
 		exit(EXIT_FAILURE);
   }
 
   //Vinculacion al segmento
 	if ((pto_shmem = shmat(shmem, NULL, 0)) == (char *) -1)
 	{
-		perror("shmat");
+		perror("\tshmat");
 		exit(EXIT_FAILURE);
 	}
 
@@ -87,19 +87,19 @@ void show_mon(shmem_data *pto_inf)
 {
   int i=0;
   system("clear");
-  printf("\n_______________________  Monitor De Procesos %d _______________________\n\n",pto_inf->pid_mon);
-  printf("\t PID\tNUMERO\tTERMINO\n");
-  printf("\t-------------------------\n");
+  printf("\n\t_______________________  Monitor De Procesos %d _______________________\n\n",pto_inf->pid_mon);
+  printf("\t\t PID\tNUMERO\tTERMINO\n");
+  printf("\t\t-------------------------\n");
   for(i; i<10; i++)
   {
     if(pto_inf->array_p[i].pid != 0)
     {
-      printf(" \t%d\t%d\t", pto_inf->array_p[i].pid,pto_inf->array_p[i].numero);
+      printf(" \t\t%d\t%d\t", pto_inf->array_p[i].pid,pto_inf->array_p[i].numero);
       fflush(stdout);
       if(pto_inf->array_p[i].termino == 0)
-        printf("NO \n");
+        printf("\tNO \n");
       else
-        printf("YES\n");
+        printf("\tYES\n");
 
       fflush(stdout);
     }
@@ -113,30 +113,30 @@ void exit_signal(int num_signal)
 
   int sem;
   if ((sem  = semget(SEM_ID, 1, 0644)) < 0) {
-    perror("Error al abrir el semaforo\n");
+    perror("\tError al abrir el semaforo\n");
     exit(EXIT_FAILURE);
   }
 
   if (semctl(sem, 0, IPC_RMID, 0) == -1)
   {
-    perror("Error al eliminar el semaforo");
+    perror("\tError al eliminar el semaforo");
     exit(EXIT_FAILURE);
   }
 
 
   if((shmem = shmget(id_shmem, sizeof(shmem_data), 0666)) < 0)
   {
-		perror("shmget");
+		perror("\tshmget");
 		exit(EXIT_FAILURE);
 	}
 
 	if (shmctl(shmem, IPC_RMID, 0) < 0)
 	{
-		perror("shmctl(IPC_RMID)");
+		perror("\tshmctl(IPC_RMID)");
 		exit(EXIT_FAILURE);
 	}
 
 	system("clear");
-	printf("Hasta luego!\n");
+	printf("\tHasta luego!\n");
   exit(EXIT_SUCCESS);
 }
