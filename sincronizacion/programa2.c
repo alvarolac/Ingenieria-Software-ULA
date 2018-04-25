@@ -45,14 +45,14 @@ int main()
   }
 
 
-  //Busqueda del segmento de memoria compartida
+  /* Busqueda del segmento de memoria compartida */
   if((shmem = shmget(id_shmem, sizeof(shmem_data), 0666)) < 0)
   {
 		perror("shmget");
 		exit(EXIT_FAILURE);
 	}
 
-  //Vinculacion al segmento
+  /* Vinculacion al segmento */
 	if((pto_shmem = shmat(shmem, NULL, 0)) == (char *) -1)
 	{
 		perror("shmat");
@@ -81,7 +81,7 @@ int main()
   {
     pto_inf->array_p[pos].numero++;
     printf("Numero: %d\n",i);
-    usleep(500000);
+    usleep(400000);
   }
 
   pto_inf->array_p[pos].termino = 1;

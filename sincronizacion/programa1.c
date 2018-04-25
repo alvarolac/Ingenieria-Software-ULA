@@ -4,7 +4,7 @@
  * Autor: Alvaro Araujo
  * Fecha: 20/04/2018
  */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -40,7 +40,7 @@ int main() {
   }
 
   //Inicializacion del semaforo
-  semctl(sem, 0, SETVAL, 4);
+  semctl(sem, 0, SETVAL, 5);
 
 
   //Creacion del segmento de memoria compartida
